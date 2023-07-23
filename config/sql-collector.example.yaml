@@ -1,0 +1,2 @@
+ConnectionStrings:
+  SqlServer: Server=host.docker.internal;Database=master;User Id=sa;Password=pass1!2@;MultipleActiveResultSets=true;Application Name=SqlCollector;Encrypt=false

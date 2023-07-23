@@ -6,13 +6,13 @@ WORKDIR /src
 COPY ["SqlCollector/SqlCollector.csproj", "SqlCollector/"]
 RUN dotnet restore "SqlCollector/SqlCollector.csproj"
 COPY . .
-WORKDIR "/src/SqlCollector"
+WORKDIR "SqlCollector"
 RUN dotnet build "SqlCollector.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "SqlCollector.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "SqlCollector.dll"]

@@ -361,3 +361,5 @@ cache
 out
 
 .env
+./config/sql-collector.yaml
+./data

@@ -13,7 +13,7 @@ public class MetricsWorker : BackgroundService
         _logger = logger;
     }
 
-    private readonly Dictionary<string, Counter> _collectorCounters = new();
+    private readonly Dictionary<string, Collector> _collectorCounters = new();
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -22,17 +22,31 @@ public class MetricsWorker : BackgroundService
             foreach (var collector in _collectors)
             {
                 var metrics = collector.GetMetrics(stoppingToken);
+
                 await foreach (var metric in metrics.WithCancellation(stoppingToken))
                 {
                     if (!_collectorCounters.TryGetValue(metric.MetricName, out var counter))
                     {
-                        counter = Metrics.CreateCounter(metric.MetricName, metric.HelpText, metric.Labels);
+                        counter = metric.Type == MetricType.Counter
+                            ? Metrics.CreateCounter(metric.MetricName, metric.HelpText, metric.Labels)
+                            : Metrics.CreateGauge(metric.MetricName, metric.HelpText, metric.Labels);
+
                         _collectorCounters.Add(metric.MetricName, counter);
                     }
-                    counter.WithLabels(metric.LabelValues).IncTo(metric.Value);
+
+                    switch (counter)
+                    {
+                        case Counter cntr:
+                            cntr.WithLabels(metric.LabelValues).IncTo(metric.Value);
+                            break;
+                        default:
+                            ((Gauge)counter).WithLabels(metric.LabelValues).Set(metric.Value);
+                            break;
+                    }
                 }
             }
-            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+
+            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
         }
     }
 }

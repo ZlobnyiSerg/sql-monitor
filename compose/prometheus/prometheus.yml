@@ -1,6 +1,6 @@
 global:
-  scrape_interval:     10s
-  evaluation_interval: 10s
+  scrape_interval:     5s
+  evaluation_interval: 5s
 
 alerting:
   alertmanagers:
@@ -10,11 +10,8 @@ alerting:
 rule_files:
 
 scrape_configs:
-  - job_name: 'cadvisor'
+  - job_name: 'sql'
     static_configs:
-      - targets: ['cadvisor:8080']
-  - job_name: 'sanatorium'
-    static_configs:
-      - targets: ['sw-test.quirco.com']
+      - targets: ['sql-collector']
     tls_config:
       insecure_skip_verify: true

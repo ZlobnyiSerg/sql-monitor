@@ -1,5 +1,5 @@
 # SQL Server Monitoring
-This is ready to use solution consiting of Prometheus metrics collector and Grafana with dashboards to monitor key metrics in MS SQL Server.
+This is ready to use solution consisting of Prometheus metrics collector and Grafana with dashboards to monitor key metrics in MS SQL Server.
 This solution was born to fill absence of free monitoring solutions for SQL server.
 
 ## Installation
@@ -11,3 +11,4 @@ docker compose up -d
 ```
 
 Open your browser with URL http://localhost:3000/. Use 'admin' and 'monitoring' to login into Grafana.
+Prometheus UI is available at http://localhost:9090/

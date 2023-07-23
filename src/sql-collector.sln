@@ -6,7 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".stuff", ".stuff", "{8F3A9B
 	ProjectSection(SolutionItems) = preProject
 		..\docker-compose.yml = ..\docker-compose.yml
 		..\README.md = ..\README.md
-		..\env.example = ..\env.example
+		.editorconfig = .editorconfig
+		..\config\sql-collector.example.yaml = ..\config\sql-collector.example.yaml
 	EndProjectSection
 EndProject
 Global

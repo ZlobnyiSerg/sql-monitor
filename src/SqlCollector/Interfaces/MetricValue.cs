@@ -14,8 +14,11 @@ public record MetricValue
 
     public double Value { get; }
 
-    public MetricValue(string metricName, string[] labels, string[] labelValues, double value)
+    public MetricType Type { get; }
+
+    public MetricValue(MetricType type, string metricName, string[] labels, string[] labelValues, double value)
     {
+        Type = type;
         MetricName = metricName
             .Replace(' ', '_')
             .Replace(':', '_')
