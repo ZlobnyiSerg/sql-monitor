@@ -8,6 +8,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".stuff", ".stuff", "{8F3A9B
 		..\README.md = ..\README.md
 		.editorconfig = .editorconfig
 		..\config\sql-collector.example.yaml = ..\config\sql-collector.example.yaml
+		..\compose\prometheus\prometheus.yml = ..\compose\prometheus\prometheus.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dashboards", "dashboards", "{0661C4DF-0441-490A-86A5-8B5F4D837BE7}"
+	ProjectSection(SolutionItems) = preProject
+		..\compose\grafana\dashboards\overview.json = ..\compose\grafana\dashboards\overview.json
 	EndProjectSection
 EndProject
 Global
@@ -20,5 +26,8 @@ Global
 		{5BA4188E-41B3-474A-85AA-6117D0BDE17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BA4188E-41B3-474A-85AA-6117D0BDE17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BA4188E-41B3-474A-85AA-6117D0BDE17C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0661C4DF-0441-490A-86A5-8B5F4D837BE7} = {8F3A9B03-9F0A-4C4B-8327-4C90C1F8807E}
 	EndGlobalSection
 EndGlobal

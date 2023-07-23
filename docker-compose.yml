@@ -28,7 +28,7 @@ services:
             --web.console.templates=/usr/share/prometheus/consoles
 
     grafana:
-        image: grafana/grafana:latest
+        image: grafana/grafana:9.5.6
         ports:
             - "3000:3000"
         environment:

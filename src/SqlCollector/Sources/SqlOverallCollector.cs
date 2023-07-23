@@ -30,7 +30,7 @@ select
 	trim(c.instance_name) as instance_name,
 	c.cntr_value,
 	c.cntr_type,
-	coalesce(b.cntr_value,0) as cntr_base
+	coalesce(b.cntr_value, 0) as cntr_base
 from
 	sys.dm_os_performance_counters c
 left join
@@ -43,7 +43,7 @@ order by
 	counter_name
 """;
 
-    private Counter _collectorCounter = Metrics.CreateCounter("sql_collector_collecting", "Counter for SQL metric's collector");
+    private Counter _collectorCounter = Metrics.CreateCounter("sql_collector_time_ms", "Time spent to collect SQL metrics");
 
     public async IAsyncEnumerable<MetricValue> GetMetrics([EnumeratorCancellation] CancellationToken cancellationToken)
     {

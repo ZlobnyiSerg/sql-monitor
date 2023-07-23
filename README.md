@@ -4,8 +4,9 @@ This solution was born to fill absence of free monitoring solutions for SQL serv
 
 ## Installation
 
-Clone this repository to any server with Docker installed. Make copy of `env.example` to `.env` and adjust SQL
-connection string. Then just run containers
+Clone this repository to any server with Docker installed. Goto folder `config` and make copy of `sql-collector.example.yaml` to `sql-collector.yaml`.
+Edit SQL server connection string and point it to your SQL server.
+Then just run containers:
 ```sh
 docker compose up -d
 ```
